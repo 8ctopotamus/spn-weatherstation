@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SPN Forecast</title>
+</head>
+<body>
+  <pre id="demo">Loading forecast data...</pre>
+
+  <script>
+    var target = document.getElementById("demo");
+    const API_KEY = "3fc9d37c4c8d5fde1adc11974f046632";
+    const FORECAST_API = `//api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getForecast);
+      } else { 
+        target.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    async function getForecast (position)  {
+      try {
+        const { latitude, longitude } = position.coords;
+        const FORECAST_URL = `${FORECAST_API}&lat=${latitude}&lon=${longitude}`;
+        const data = await fetch(FORECAST_URL);
+        const json = await data.json();
+        target.innerHTML = JSON.stringify(json, null, 2);
+      } catch (err) {
+        console.log(err)
+        target.innerHTML = 'Error fetching data.';
+      }
+    }
+
+    getLocation();
+  </script>
+</body>
+</html>
