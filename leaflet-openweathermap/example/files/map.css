@@ -5,7 +5,7 @@ html, body {
 }
 
 #map {
-	width: 70%;
+	width: 93.3%;
 	height: 70%;
 	margin: auto;
 }
@@ -24,4 +24,24 @@ html, body {
 .grid {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
+}
+div.item {
+	padding-top: 20px;
+	margin-left: 9px;
+    /* To correctly align image, regardless of content height: */
+    vertical-align: top;
+    display: inline-block;
+    /* To horizontally center images and caption */
+    text-align: center;
+    /* The width of the container also implies margin around the images. */
+    width: 200px;
+}
+img {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+}
+.caption {
+    /* Make the caption a block so it occupies its own line. */
+    display: block;
 }
